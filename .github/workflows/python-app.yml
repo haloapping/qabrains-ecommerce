@@ -33,14 +33,14 @@ jobs:
       - name: Install Pytest
         run: uv tool install pytest
 
-      - name: Install Allure
-        run: uv pip install allure-pytest
+      - name: Install Playwright
+        run: uv tool install playwright
 
       - name: Install dependencies
         run: uv sync
 
-      - name: Install Playwright
-        run: uv tool install playwright
+      - name: Install Allure
+        run: uv pip install allure-pytest
 
       - name: Lint with Ruff
         run: ruff check --fix
