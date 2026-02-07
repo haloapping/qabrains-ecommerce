@@ -9,4 +9,5 @@ dependencies = [
     "faker>=40.1.2",
     "pytest-playwright>=0.7.2",
     "pytest-xdist>=3.8.0",
+    "ruff>=0.15.0",
 ]
