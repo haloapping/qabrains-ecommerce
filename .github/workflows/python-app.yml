@@ -40,7 +40,7 @@ jobs:
         run: uv sync
 
       - name: Install Allure
-        run: uv pip install allure-pytest
+        run: uv pip install allure
 
       - name: Lint with Ruff
         run: ruff check --fix
