@@ -4,7 +4,7 @@ from playwright.sync_api import expect, sync_playwright
 from login import login
 
 
-def test_add_to_cart():
+def test_add_to_cart_and_checkout():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         context = browser.new_context(viewport={"width": 1920, "height": 1080})
@@ -37,18 +37,39 @@ def test_add_to_cart():
             page.locator("span[role='button']").first.click()
 
         with allure.step("Check and validate detail cart"):
-            product_cart_name = page.locator(
-                "h3.font-bold.font-oswald.text-lg"
-            ).inner_text()
-            assert product_name == product_cart_name
-
-            product_cart_price = (
-                page.locator("p.font-bold.font-oswald.text-lg").nth(0).inner_text()
-            )
-            assert product_price == product_cart_price
-
-            product_cart_total_price = (
-                page.locator("p.font-bold.font-oswald.text-lg").nth(1).inner_text()
+            expect(page.locator("h3.font-bold.font-oswald.text-lg")).to_have_text(
+                product_name
             )
 
-            assert product_cart_total_price == "$49.99"
+            expect(page.locator("p.font-bold.font-oswald.text-lg").nth(0)).to_have_text(
+                product_price
+            )
+
+            expect(page.locator("p.font-bold.font-oswald.text-lg").nth(1)).to_have_text(
+                "$49.99"
+            )
+
+        with allure.step("Check and validate checkout button"):
+            expect(page.get_by_role("button", name="Checkout")).to_be_visible()
+            expect(page.get_by_role("button", name="Checkout")).to_be_enabled()
+            page.get_by_role("button", name="Checkout").click()
+
+        with allure.step("Check and validate checkout form"):
+            expect(page.locator("div:nth-child(1) > label")).to_have_text("Email")
+            expect(page.locator("div:nth-child(1) > input")).to_be_disabled()
+            expect(page.locator("div:nth-child(1) > input")).to_have_value("test@qabrains.com")
+
+            expect(page.locator("div:nth-child(2) > label")).to_have_text("First Name")
+            expect(page.locator("div:nth-child(2) > input")).to_have_attribute("placeholder", "Ex. John")
+            page.locator("div:nth-child(2) > input").fill("Jane")
+
+            expect(page.locator("div:nth-child(3) > label")).to_have_text("Last Name")
+            expect(page.locator("div:nth-child(3) > input")).to_have_attribute("placeholder", "Ex. Doe")
+            page.locator("div:nth-child(3) > input").fill("Doe")
+
+            expect(page.locator("div:nth-child(4) > label")).to_have_text("Zip Code")
+            expect(page.locator("div:nth-child(4) > input")).to_have_value("1207")
+
+            expect(page.get_by_role("button", name="Continue")).to_be_visible()
+            expect(page.get_by_role("button", name="Continue")).to_be_enabled()
+            page.get_by_role("button", name="Continue").click()
