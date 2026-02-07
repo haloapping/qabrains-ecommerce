@@ -46,7 +46,7 @@ jobs:
         run: ruff check --fix
 
       - name: Run tests
-        run: pytest --alluredir allure-results
+        run: pytest
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
