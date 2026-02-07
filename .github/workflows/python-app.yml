@@ -30,6 +30,9 @@ jobs:
       - name: Install Ruff
         run: uv tool install ruff
 
+      - name: Install Pytest Playwright
+        run: uv tool install pytest-playwright
+
       - name: Install dependencies
         run: uv sync
 
