@@ -34,7 +34,7 @@ jobs:
         run: uv tool install pytest
 
       - name: Install Allure
-        run: uv tool install allure-pytest
+        run: uv pip install allure-pytest
 
       - name: Install dependencies
         run: uv sync
