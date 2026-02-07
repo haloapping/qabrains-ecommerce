@@ -34,7 +34,7 @@ jobs:
         run: uv tool install pytest
 
       - name: Install Pytest Xdist
-        run: uv tool install pytest-xdist
+        run: uv pip install pytest-xdist
 
       - name: Install Playwright
         run: uv tool install playwright
