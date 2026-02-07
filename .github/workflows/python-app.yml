@@ -33,9 +33,6 @@ jobs:
       - name: Install Pytest
         run: uv tool install pytest
 
-      - name: Install Allure
-        run: uv tool install allure-pytest
-
       - name: Install Playwright
         run: uv tool install playwright
 
