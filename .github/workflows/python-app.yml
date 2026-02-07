@@ -40,6 +40,7 @@ jobs:
         run: |
           uv sync
           uv run pip install allure-pytest
+          uv run playwright install
 
       - name: Lint with Ruff
         run: uv run ruff check --fix
