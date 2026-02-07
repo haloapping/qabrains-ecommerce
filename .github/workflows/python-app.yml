@@ -44,9 +44,6 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Install allure-pytest
-        run: uv pip install allure-pytest
-
       - name: Lint with Ruff
         run: ruff check --fix
 
