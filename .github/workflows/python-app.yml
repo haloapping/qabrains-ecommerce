@@ -17,11 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - uses: actions/checkout@v4
 
       - name: Set up Python 3.10
@@ -42,13 +37,15 @@ jobs:
         run: uv tool install playwright
 
       - name: Install dependencies
-        run: uv sync
+        run: |
+          uv sync
+          uv run pip install allure-pytest
 
       - name: Lint with Ruff
-        run: ruff check --fix
+        run: uv run ruff check --fix
 
       - name: Run tests
-        run: pytest
+        run: uv run pytest
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
