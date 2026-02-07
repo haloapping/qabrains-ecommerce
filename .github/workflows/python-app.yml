@@ -46,10 +46,10 @@ jobs:
         run: uv run ruff check --fix
 
       - name: Run tests
-        run: uv run pytest -n auto --alluredir allure-results
+        run: uv run pytest -n auto --alluredir test-report
 
-      - name: Upload Allure results
+      - name: Upload Allure report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results
-          path: allure-results
+          name: test-report
+          path: test-report
