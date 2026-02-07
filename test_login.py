@@ -7,7 +7,7 @@ from playwright.sync_api import expect, sync_playwright
 @allure.tag("Login")
 def test_login_valid():
     with sync_playwright() as sp:
-        browser = sp.chromium.launch(headless=False)
+        browser = sp.chromium.launch()
         context = browser.new_context(viewport={"width": 1920, "height": 1080})
         page = context.new_page()
 
@@ -41,7 +41,7 @@ def test_login_valid():
 @allure.tag("Login")
 def test_login_invalid():
     with sync_playwright() as sp:
-        browser = sp.chromium.launch(headless=False)
+        browser = sp.chromium.launch()
         context = browser.new_context(viewport={"width": 1920, "height": 1080})
         page = context.new_page()
 
