@@ -42,14 +42,11 @@ jobs:
       - name: Install allure-pytest
         run: uv pip install allure-pytest
 
-      - name: Install dependencies
-        run: uv sync
-
       - name: Lint with Ruff
         run: ruff check --fix
 
       - name: Run tests
-        run: pytest --alluredir=allure-results
+        run: pytest --alluredir allure-results
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
