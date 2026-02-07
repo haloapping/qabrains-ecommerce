@@ -36,9 +36,6 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Install Pytest Xdist
-        run: uv pip install pytest-xdist
-
       - name: Install Playwright
         run: uv tool install playwright
 
@@ -46,4 +43,4 @@ jobs:
         run: ruff check --fix
 
       - name: Test with pytest
-        run: pytest -s -n auto -vv .
+        run: pytest -s -vv .
