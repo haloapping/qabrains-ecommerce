@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync
-          uv run pip install allure-pytest
+          uv add allure-pytest
           uv run playwright install
 
       - name: Lint with Ruff
