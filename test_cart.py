@@ -57,14 +57,20 @@ def test_add_to_cart_and_checkout():
         with allure.step("Check and validate checkout form"):
             expect(page.locator("div:nth-child(1) > label")).to_have_text("Email")
             expect(page.locator("div:nth-child(1) > input")).to_be_disabled()
-            expect(page.locator("div:nth-child(1) > input")).to_have_value("test@qabrains.com")
+            expect(page.locator("div:nth-child(1) > input")).to_have_value(
+                "test@qabrains.com"
+            )
 
             expect(page.locator("div:nth-child(2) > label")).to_have_text("First Name")
-            expect(page.locator("div:nth-child(2) > input")).to_have_attribute("placeholder", "Ex. John")
+            expect(page.locator("div:nth-child(2) > input")).to_have_attribute(
+                "placeholder", "Ex. John"
+            )
             page.locator("div:nth-child(2) > input").fill("Jane")
 
             expect(page.locator("div:nth-child(3) > label")).to_have_text("Last Name")
-            expect(page.locator("div:nth-child(3) > input")).to_have_attribute("placeholder", "Ex. Doe")
+            expect(page.locator("div:nth-child(3) > input")).to_have_attribute(
+                "placeholder", "Ex. Doe"
+            )
             page.locator("div:nth-child(3) > input").fill("Doe")
 
             expect(page.locator("div:nth-child(4) > label")).to_have_text("Zip Code")
