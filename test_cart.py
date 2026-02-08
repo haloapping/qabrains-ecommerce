@@ -9,6 +9,9 @@ def test_add_to_cart_and_checkout(page: Page):
 
     login(page)
 
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce")
+
     with allure.step("Check and validate number of cart icon"):
         expect(page.locator("span.bg-qa-clr")).not_to_be_visible()
 
@@ -30,6 +33,9 @@ def test_add_to_cart_and_checkout(page: Page):
         expect(page.locator("span[role='button']").first).to_be_visible()
         expect(page.locator("span[role='button']").first).to_be_enabled()
         page.locator("span[role='button']").first.click()
+
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce/cart")
 
     with allure.step("Check and validate detail cart"):
         expect(page.locator("h3.font-bold.font-oswald.text-lg")).to_have_text(

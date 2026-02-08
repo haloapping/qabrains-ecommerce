@@ -2,18 +2,17 @@ import allure
 from faker import Faker
 from playwright.sync_api import Page, expect
 
-from login import login
-
 
 @allure.title("Login valid")
 @allure.tag("Login")
 def test_login_valid(page: Page):
     page.set_viewport_size({"width": 1920, "height": 1080})
 
-    login(page)
-
     with allure.step("Open browser"):
         page.goto("https://practice.qabrains.com/ecommerce/login")
+
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce/login")
 
     with allure.step("Check and validate email field"):
         expect(page.locator("#email")).to_be_visible()
@@ -37,16 +36,20 @@ def test_login_valid(page: Page):
         expect(page.locator("button[type='submit']")).to_be_enabled()
         page.click(selector="button[type='submit']")
 
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce")
+
 
 @allure.title("Login invalid")
 @allure.tag("Login")
 def test_login_invalid(page: Page):
     page.set_viewport_size({"width": 1920, "height": 1080})
 
-    login(page)
-
     with allure.step("Open browser"):
         page.goto("https://practice.qabrains.com/ecommerce/login")
+
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce/login")
 
     with allure.step("Create fake data"):
         faker = Faker()

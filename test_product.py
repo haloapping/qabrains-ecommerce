@@ -12,9 +12,10 @@ from login import login
 def test_product_card(page: Page):
     page.set_viewport_size({"width": 1920, "height": 1080})
 
-    print("Hiiiii")
-
     login(page)
+
+    with allure.step("Check and validate current url"):
+        expect(page).to_have_url("https://practice.qabrains.com/ecommerce")
 
     with allure.step("Check and validate button favourite"):
         expect(page.locator("button:has(svg)").nth(2)).to_be_visible()
