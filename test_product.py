@@ -1,7 +1,7 @@
 import time
 
 import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect, Browser
 
 from login import login
 
@@ -9,7 +9,9 @@ from login import login
 @allure.testcase("Product card")
 @allure.title("All Products Displayed")
 @allure.tag("Product")
-def test_product_card(page: Page):
+def test_product_card(browser: Browser):
+    context = browser.new_context()
+    page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
     login(page)

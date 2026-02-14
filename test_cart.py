@@ -1,10 +1,12 @@
 import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Browser, expect
 
 from login import login
 
 
-def test_add_to_cart_and_checkout(page: Page):
+def test_add_to_cart_and_checkout(browser: Browser):
+    context = browser.new_context()
+    page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
     login(page)

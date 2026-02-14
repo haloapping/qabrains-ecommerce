@@ -1,11 +1,13 @@
 import allure
 from faker import Faker
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Browser, expect
 
 
 @allure.title("Login valid")
 @allure.tag("Login")
-def test_login_valid(page: Page):
+def test_login_valid(browser: Browser):
+    context = browser.new_context()
+    page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
     with allure.step("Open browser"):
@@ -42,7 +44,9 @@ def test_login_valid(page: Page):
 
 @allure.title("Login invalid")
 @allure.tag("Login")
-def test_login_invalid(page: Page):
+def test_login_invalid(browser: Browser):
+    context = browser.new_context()
+    page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
     with allure.step("Open browser"):
